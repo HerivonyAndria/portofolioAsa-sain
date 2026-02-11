@@ -71,7 +71,7 @@ export const homeIntroConfig = {
   /**
    * Votre prénom ou nom court
    */
-  shortName: "Herivony Zola",
+  shortName: "Zola.",
 
   /**
    * Titre professionnel

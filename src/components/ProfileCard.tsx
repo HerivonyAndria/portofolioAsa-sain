@@ -49,7 +49,7 @@ export default function ProfileCard() {
           {/* Name and title */}
           <div className="text-center space-y-2">
             <h3 className="text-2xl font-bold text-white">
-              Herivony Zolalaina
+              Zola.
             </h3>
             <p className="text-blue-300 text-sm font-medium flex items-center justify-center gap-1">
               <span className="inline-block w-2 h-2 bg-blue-400 rounded-full"></span>

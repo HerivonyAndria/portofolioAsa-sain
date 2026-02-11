@@ -2,7 +2,7 @@
 import ContactForm from "@/components/ContactForm"
 
 export const metadata = {
-  title: "Contact - Herivony Zolalaina",
+  title: "Contact - Zola.",
   description: "Contactez-moi pour discuter de vos projets IT, d'administration système ou de monitoring.",
 }
 

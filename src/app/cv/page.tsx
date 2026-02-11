@@ -31,7 +31,7 @@ export default function CVPage() {
         {/* En-tête */}
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-2">
-            Herivony Zolalaina
+            Zola.
           </h1>
           <h2 className="text-xl text-blue-600 dark:text-blue-400 mb-4">
             Software Engineer | Full-Stack Developer
