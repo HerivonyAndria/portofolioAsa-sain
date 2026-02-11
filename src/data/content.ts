@@ -82,7 +82,7 @@ export const homeIntroConfig = {
    * Paragraphes d'introduction
    */
   introParagraphs: [
-    "Expert IT avec plus de 5 ans d'expérience dans l'administration système, la virtualisation et le cloud. Actuellement Freelance IT à travers ma société ASA-SAÏN, spécialisée dans l'externalisation de services informatiques, l'administration système et le monitoring.",
+    "Expert IT avec plus de 7 ans d'expérience dans l'administration système, la virtualisation et le cloud. Actuellement Freelance IT à travers ma société ASA-SAÏN, spécialisée dans l'externalisation de services informatiques, l'administration système et le monitoring.",
     "Passionné par la résolution de problèmes complexes et l'optimisation des infrastructures, je combine expertise technique et vision stratégique pour accompagner les entreprises dans leur transformation numérique. Mon approche allie rigueur technique et innovation pour garantir des systèmes performants, sécurisés et évolutifs.",
   ],
 
