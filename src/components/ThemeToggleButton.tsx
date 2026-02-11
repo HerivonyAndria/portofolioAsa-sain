@@ -1,16 +1,14 @@
+// src/components/ThemeToggleButton.tsx (version améliorée)
 "use client"
 
-import { motion, AnimatePresence } from "framer-motion"
-import { useTheme } from "next-themes"
 import { useEffect, useState } from "react"
-import { FaMoon, FaSun } from "react-icons/fa6"
+import { useTheme } from "next-themes"
+import { FiSun, FiMoon } from "react-icons/fi"
+import { cn } from "@/lib/utils"
 
-/**
- * A functional component that renders a button to toggle between light and dark themes.
- */
 export default function ThemeToggleButton() {
   const [mounted, setMounted] = useState(false)
-  const { resolvedTheme, setTheme } = useTheme()
+  const { theme, setTheme } = useTheme()
 
   useEffect(() => {
     setMounted(true)
@@ -18,49 +16,58 @@ export default function ThemeToggleButton() {
 
   if (!mounted) {
     return (
-      <div
-        className="w-11 h-11 rounded-lg border border-gray-300 dark:border-gray-700
-                      bg-gray-100 dark:bg-gray-800 animate-pulse"
-      />
+      <div className="w-8 h-8 rounded-lg bg-gray-200 dark:bg-gray-800 animate-pulse" />
     )
   }
 
+  const isDark = theme === "dark"
+
   return (
     <button
-      onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
-      className="relative w-11 h-11 rounded-lg transition-all duration-200
-                 border border-gray-300 dark:border-gray-700
-                 bg-gray-100 dark:bg-gray-800
-                 hover:bg-gray-200 dark:hover:bg-gray-700
-                 hover:border-gray-400 dark:hover:border-gray-600
-                 active:scale-95
-                 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500
-                 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-black
-                 flex items-center justify-center
-                 cursor-pointer shadow-sm hover:shadow-md"
-      aria-label={`Switch to ${resolvedTheme === "dark" ? "light" : "dark"} mode`}
+      onClick={() => setTheme(isDark ? "light" : "dark")}
+      aria-label={`Switch to ${isDark ? "light" : "dark"} mode`}
+      className={cn(
+        "relative w-8 h-8 flex items-center justify-center",
+        "rounded-lg transition-all duration-300",
+        "hover:scale-110 active:scale-95",
+        // Background dynamique
+        isDark
+          ? "bg-gradient-to-br from-gray-800 to-gray-900 text-yellow-300"
+          : "bg-gradient-to-br from-yellow-100 to-orange-100 text-yellow-600",
+        // Effets
+        "shadow-sm hover:shadow-md",
+        "border border-gray-300/50 dark:border-gray-700/50",
+        "focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/50"
+      )}
     >
-      <AnimatePresence mode="wait" initial={false}>
-        <motion.div
-          key={resolvedTheme}
-          initial={{ rotate: -90, opacity: 0, scale: 0.6 }}
-          animate={{ rotate: 0, opacity: 1, scale: 1 }}
-          exit={{ rotate: 90, opacity: 0, scale: 0.6 }}
-          transition={{
-            type: "spring",
-            stiffness: 500,
-            damping: 25,
-            mass: 0.5,
-          }}
-          className="absolute pointer-events-none"
-        >
-          {resolvedTheme === "dark" ? (
-            <FaSun className="w-5 h-5 text-yellow-400" />
-          ) : (
-            <FaMoon className="w-5 h-5 text-blue-600" />
+      {/* Animation de transition */}
+      <div className="relative w-5 h-5">
+        <FiSun
+          className={cn(
+            "absolute inset-0 w-full h-full transition-all duration-300",
+            isDark
+              ? "opacity-0 rotate-90 scale-0"
+              : "opacity-100 rotate-0 scale-100"
           )}
-        </motion.div>
-      </AnimatePresence>
+        />
+        <FiMoon
+          className={cn(
+            "absolute inset-0 w-full h-full transition-all duration-300",
+            isDark
+              ? "opacity-100 rotate-0 scale-100"
+              : "opacity-0 -rotate-90 scale-0"
+          )}
+        />
+      </div>
+      
+      {/* Effet de halo */}
+      <div
+        className={cn(
+          "absolute inset-0 rounded-lg -z-10",
+          "bg-gradient-to-br from-blue-500/20 to-purple-500/20",
+          "opacity-0 hover:opacity-100 transition-opacity duration-300"
+        )}
+      />
     </button>
   )
 }

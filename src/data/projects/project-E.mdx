@@ -1,44 +1,52 @@
 ---
-title: FitVR
-image: /projects/pictureE.jpg
-description: A virtual reality fitness platform.
-startDate: 2021-11
-endDate: 2022-05
+title: Automatisation des Vérifications Matinales et Reporting Proactif
+image: /projects/automation.jpg
+description: Développement d'une plateforme d'automatisation des contrôles quotidiens d'infrastructure, remplaçant 4 heures de vérifications manuelles par des rapports automatisés en 5 minutes.
+startDate: 2023-02
+endDate: 2023-03
 techStack:
-  - Unity
-  - C#
-  - Oculus SDK
-  - Blender
-  - Firebase
-teamSize: 4
-role: VR Developer
-githubUrl: https://github.com/project-FitVR
+  - PowerShell
+  - Python
+  - Puppeteer
+  - Node.js
+  - REST API
+  - VMware vSphere API
+  - Microsoft Graph API
+  - Zabbix API
+  - Power Automate
+  - Teams Webhooks
+  - Azure Functions
+teamSize: 1
+role: DevOps & Automation Engineer
 ---
 
-# Introduction
+# Automatisation des Vérifications Matinales et Reporting Proactif
 
-Project FitVR combines fitness and gaming to create an immersive workout experience. It motivates users to stay active by turning exercise into a fun and interactive activity.
+## Contexte
 
-## Key Features
+Chaque matin, les équipes support du groupe Axian effectuaient manuellement 4 heures de vérifications sur :
+- **10+ vCenters** : État des clusters, stockage, alarmes actives
+- **50+ URLs critiques** : Accessibilité des applications métiers
+- **30+ services Windows** : État des services critiques sur 200+ serveurs
+- **Performances** : CPU, mémoire, disque des serveurs critiques
+- **Backups** : État des sauvegardes de la nuit
 
-- **Immersive Workouts**: Virtual environments like beaches, mountains, and space stations for workouts.
-- **Gamification**: Points, achievements, and leaderboards to keep users motivated.
-- **Customizable Routines**: Personalized workout plans based on user preferences.
-- **Multiplayer Mode**: Work out with friends in a shared virtual space.
+**Problèmes identifiés :**
+- **Temps perdu** : 4 heures/jour × 5 ingénieurs = 20 heures-homme/jour
+- **Erreurs humaines** : Oublis, mauvaises interprétations
+- **Documentation** : Rapports inconsistants, difficiles à archiver
+- **Réactivité** : Détection tardive des incidents nocturnes
+- **Fatigue** : Tâches répétitives et peu valorisantes
 
-## Technical Insights
+## Objectifs du Projet
 
-- **Game Development**: Built using Unity and C# for high-performance VR experiences.
-- **3D Modeling**: Created virtual environments and assets using Blender.
-- **VR Integration**: Used Oculus SDK for seamless interaction with VR hardware.
-- **Backend**: Firebase for user authentication, data storage, and real-time updates.
+1. **Automatisation complète** : Remplacer 100% des vérifications manuelles
+2. **Gain de temps** : Réduire de 4 heures à 5 minutes les contrôles matinaux
+3. **Fiabilité** : Éliminer les erreurs humaines et les oublis
+4. **Proactivité** : Détecter les incidents avant l'arrivée des équipes
+5. **Centralisation** : Unifier tous les rapports dans un dashboard unique
+6. **Alerting** : Notification automatique des anomalies détectées
 
-## Challenges and Solutions
+## Architecture Technique
 
-- **Motion Sickness**: Designed smooth transitions and optimized frame rates to minimize discomfort.
-- **User Engagement**: Added gamification elements to keep users motivated.
-- **Hardware Compatibility**: Ensured compatibility with multiple VR headsets.
-
-## Outcome
-
-Project FitVR was showcased at a tech expo and received positive feedback for its innovative approach to fitness. It attracted interest from fitness enthusiasts and VR developers alike.
+### Stack Technologique

@@ -1,46 +1,50 @@
 ---
-title: YouNovate
-image: /projects/pictureA.jpg
-description: A platform for innovative ideas and solutions.
-startDate: 2023-01
-endDate: 2023-06
+title: Supervision Infrastructure avec Zabbix
+image: /projects/zabbix-dashboard.jpg
+description: Déploiement et configuration d'une solution de monitoring complète pour 500+ équipements du groupe Axian, hébergés chez Stellar-ix.
+startDate: 2023-11
+endDate: 2024-02
 techStack:
-  - React
-  - TypeScript
-  - TailwindCSS
-  - Node.js
-  - PostgreSQL
-  - aws
-teamSize: 4
-role: Full-Stack Developer
-githubUrl: https://github.com/project-YouNovate
+  - Zabbix
+  - Linux
+  - Windows Server
+  - PfSense
+  - Meraki
+  - Microsoft 365
+  - PowerShell
+  - Bash
+  - Grafana
+  - Docker
+  - VMware
+teamSize: 1
+role: Expert Système et Application
 ---
 
-# Introduction
+# Supervision Infrastructure avec Zabbix
 
-Project YouNovate is a comprehensive collaboration platform tailored for software development teams. It combines task management, real-time communication, and code integration into a single, seamless experience.
+## Contexte
 
-## Key Features
+Les 30+ entités du groupe Axian hébergeaient leurs infrastructures dans le datacenter de Stellar-ix sans outil de monitoring unifié. 
+Les incidents étaient détectés de manière réactive par les appels des clients, et les équipes support travaillaient sans visibilité 
+sur la santé des systèmes (réseau, serveurs, firewall). Le temps moyen de résolution (MTTR) était élevé et les coupures impactaient 
+15 000+ utilisateurs.
 
-- **Task Management**: A Kanban-style board for tracking tasks, sprints, and milestones.
-- **Real-Time Collaboration**: Integrated chat and video conferencing for team discussions.
-- **Code Integration**: Direct integration with GitHub for pull requests, issue tracking, and code reviews.
-- **Analytics Dashboard**: Visualize team performance with metrics like velocity, code churn, and deployment frequency.
+## Objectifs du Projet
 
-## Technical Insights
+1. **Monitoring Proactif** : Détecter les incidents avant qu'ils n'impactent les utilisateurs
+2. **Centralisation** : Unifier la supervision de toutes les entités sur une seule plateforme
+3. **Automatisation** : Configurer des alertes automatiques et des tableaux de bord en temps réel
+4. **Intégration** : Monitorer aussi bien l'infrastructure on-premise que les services cloud (M365)
 
-- **Frontend**: Built with React and TypeScript, the UI is highly responsive and optimized for performance. TailwindCSS was used for rapid prototyping and consistent styling.
-- **Backend**: A Node.js server with an Express framework powers the API, ensuring scalability and reliability.
-- **Database**: PostgreSQL was chosen for its robust relational data handling, with Sequelize as the ORM.
-- **Cloud Infrastructure**: Hosted on AWS, leveraging services like EC2, S3, and RDS for deployment, storage, and database management.
-- **CI/CD Pipeline**: Implemented using GitHub Actions for automated testing, linting, and deployment.
+## Architecture Technique
 
-## Challenges and Solutions
+### Stack Technologique
+- **Zabbix 7.0 LTS** : Serveur principal avec base de données PostgreSQL
+- **Agents Zabbix** : Déployés sur 200+ serveurs Windows et Linux
+- **SNMP Monitoring** : Pour les équipements réseau (PfSense, Meraki, switches)
+- **VMware Monitoring** : Intégration vSphere pour la virtualisation
+- **Microsoft 365** : Monitoring via API Graph pour Exchange Online, SharePoint, Teams
+- **Grafana** : Dashboards avancés pour la direction
+- **Slack/Email** : Canaux d'alertes automatiques
 
-- **Real-Time Communication**: Implemented WebSocket-based communication for chat and notifications, ensuring low latency.
-- **Scalability**: Designed the backend with a microservices architecture to handle increasing user loads.
-- **Security**: Integrated OAuth 2.0 for secure authentication and role-based access control.
-
-## Outcome
-
-Project YouNovate was successfully deployed and adopted by several development teams, improving their productivity and collaboration. The platform received positive feedback for its intuitive design and robust feature set.
+### Infrastructure Déployée

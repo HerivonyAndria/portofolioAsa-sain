@@ -43,7 +43,7 @@ export default function Breadcrumbs() {
         {/* Initials on mobile */}
         <span className="block md:hidden text-lg">{initials}</span>
         {/* Full name on desktop */}
-        <span className="hidden md:inline text-lg">{homeIntroConfig.name}</span>
+  <span className="hidden md:inline text-lg">{homeIntroConfig.name}</span>
       </Link>
 
       {/* Crumbs part: show only on mobile, not on desktop */}

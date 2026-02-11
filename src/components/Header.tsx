@@ -1,6 +1,7 @@
+// src/components/Header.tsx (version améliorée)
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Breadcrumbs from "@/components/Breadcrumbs"
 import MobileMenu from "@/components/MobileMenu"
 import MobileMenuToggle from "@/components/MobileMenuToggle"
@@ -8,11 +9,21 @@ import NavigationMenu from "@/components/NavigationMenu"
 import ThemeToggleButton from "@/components/ThemeToggleButton"
 import { cn } from "@/lib/utils"
 
-/**
- * Header component that serves as the top navigation bar for the portfolio.
- */
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const isScrolled = window.scrollY > 20
+      if (isScrolled !== scrolled) {
+        setScrolled(isScrolled)
+      }
+    }
+
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [scrolled])
 
   return (
     <header
@@ -20,9 +31,10 @@ export default function Header() {
       className={cn(
         "sticky top-0 z-50 w-full transition-all duration-300",
         "text-black dark:text-white",
-        "bg-zinc-50/90 dark:bg-black/90",
-        "border-b border-gray-300 dark:border-gray-800",
-        "backdrop-blur-md backdrop-saturate-150",
+        // Transparent par défaut, avec effet glass au scroll
+        scrolled 
+          ? "bg-white/70 dark:bg-black/70 backdrop-blur-xl border-b border-gray-200/30 dark:border-gray-800/30"
+          : "bg-transparent backdrop-blur-sm border-b border-transparent",
         "shadow-sm hover:shadow-md"
       )}
     >
@@ -41,14 +53,28 @@ export default function Header() {
 
         {/* Right side: Theme toggle + Mobile Menu Toggle */}
         <div className="flex items-center gap-3">
-          {/* Theme toggle button */}
-          <ThemeToggleButton />
+          {/* Theme toggle button amélioré */}
+          <div className={cn(
+            "p-1.5 rounded-lg",
+            "bg-gray-100/80 dark:bg-gray-800/80",
+            "backdrop-blur-sm",
+            scrolled ? "border border-gray-200/50 dark:border-gray-700/50" : ""
+          )}>
+            <ThemeToggleButton />
+          </div>
 
-          {/* Hamburger Mobile Menu toggle */}
-          <MobileMenuToggle
-            isOpen={mobileMenuOpen}
-            onToggleAction={() => setMobileMenuOpen(!mobileMenuOpen)}
-          />
+          {/* Hamburger Mobile Menu toggle amélioré */}
+          <div className={cn(
+            "p-1.5 rounded-lg",
+            "bg-gray-100/80 dark:bg-gray-800/80",
+            "backdrop-blur-sm",
+            scrolled ? "border border-gray-200/50 dark:border-gray-700/50" : ""
+          )}>
+            <MobileMenuToggle
+              isOpen={mobileMenuOpen}
+              onToggleAction={() => setMobileMenuOpen(!mobileMenuOpen)}
+            />
+          </div>
         </div>
       </div>
 

@@ -7,6 +7,7 @@ import React, { ReactNode } from "react"
 import Footer from "@/components/Footer"
 import Header from "@/components/Header"
 import { cn } from "@/lib/utils"
+import ParticlesBackground from "@/components/ui/ParticlesBackground" 
 
 /**
  * Import and configure the Gabarito font from Google Fonts.
@@ -56,15 +57,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       >
         <ThemeProvider attribute="class" defaultTheme="system">
           {/* Dot Background Layer */}
-          <div
-            className={cn(
-              "fixed inset-0 -z-10",
-              "bg-[radial-gradient(circle,#d1d5db_1px,transparent_1px)]",
-              "dark:bg-[radial-gradient(circle,#3f3f46_1px,transparent_1px)]",
-              "bg-size-[30px_30px]",
-              "mask-[radial-gradient(ellipse_50%_50%_at_50%_50%,#000_60%,transparent_100%)]"
-            )}
-          />
+        <ParticlesBackground />
           <Header />
           <main className="grow container mx-auto px-4 py-6">
             {children}

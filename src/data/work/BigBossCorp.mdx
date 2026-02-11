@@ -1,53 +1,126 @@
 ---
-company: Hypernova Labs
-title: Software Engineer
-start: Aug 2024
+company: Axian Group
+title: Expert Système et Application - L3 Pulse
+start: Nov 2023
 end: Present
-description: Led a team of 5 building scalable microservices with Node.js and AWS.
+description: Supervision, virtualisation et transformation digitale pour 30+ entités du groupe, gestion de 15 000+ utilisateurs.
 locations:
-  - Remote
-  - New York City (Hybrid)
-logoUrl: /work/eclipse.svg
+  - Madagascar (Remote)
+logoUrl: /work/axian_logo.png
 techStack:
-  - NextJS
-  - TypeScript
-  - GraphQL
-  - TailwindCSS
-  - Node.js
-  - AWS
-  - Redis
+  - Microsoft 365
+  - Azure
+  - Zabbix
+  - Postfix/SMTP
+  - SharePoint
+  - PowerShell
+  - Linux
+  - Windows Server
+  - Meraki
+  - PfSense
+  - DKIM/DMARC/SPF
+  - Active Directory
 ---
-
 import { TimelineItem } from "../../components/mdx/Timeline"
 import { Timeline } from "../../components/mdx/Timeline"
 
-## Roles
+## Rôles
 
 <Timeline>
     <TimelineItem
-        title="Lead Frontend Engineer"
-        duration="02/2025 - Present"
-        location="Remote / Hybrid (NYC)"
-    >
-        - Leading the frontend engineering team to build AI-driven real-time collaboration platforms.
-        - Spearheaded migration to **GraphQL** APIs and optimized frontend data handling.
-        - Established design system in **TailwindCSS** for unified UX across products.
-        - Actively involved in product discovery and rapid prototyping with PMs and Designers.
-    </TimelineItem>
-
-    <TimelineItem
-        title="Senior Software Engineer"
-        duration="08/2024 - 01/2025"
+        title="Expert Système et Application"
+        duration="11/2023 - Présent"
         location="Remote"
     >
-        - Developed new core features for the Hypernova App, enabling team presence and live document collaboration.
-        - Implemented server-side rendering (SSR) strategies to improve TTFB and Core Web Vitals.
-        - Introduced lightweight **micro-frontend** architecture for faster parallel development.
+        - Supervision et optimisation des infrastructures IT pour 30+ entités du groupe
+        - Migration stratégique vers le cloud Microsoft 365 pour 15 000+ utilisateurs
+        - Développement d'outils d'automatisation et de monitoring proactif
+        - Sécurisation des environnements cloud et on-premise
+        - Gestion de projets de transformation digitale à grande échelle
     </TimelineItem>
-
 </Timeline>
 
-## Key Projects
+## Projets Clés
 
-- **NovaFlow**: Built the live-collaboration engine enabling shared cursors, live text editing, and instant notifications.
-- **AI Meeting Summarizer**
+### 🚀 Migration Microsoft 365 & Rebranding
+**Contexte** : Les 30 entités d'Axian Group avaient leurs propres infrastructures, rendant la communication par mail compliquée (DKIM, DMARK, SPF), chacun gérait son infra ou externalisait.
+
+**Solution** : En tant qu'expert en M365, nous les avons migrées pour faciliter la gestion, la sécurité et la communication. Rebranding des entités du cluster Axian-Telecom vers Yas et Mixx pour unifier l'identité.
+
+**Impact** : 
+- Communication facile entre collaborateurs de différentes entités
+- Gestion unifiée par des experts
+- Audit de sécurité facilité
+- Sécurisation optimale
+- Visibilité cohérente sur l'appartenance au groupe
+
+**Échelle** : 15 000 utilisateurs, 30 entités, 3 000+ utilisateurs concernés par le rebranding
+
+---
+
+### 📧 Création Serveur SMTP pour Mvola
+**Contexte** : Une fois migrés sur M365, les comptes de services qui envoyaient des centaines de milliers de mails par jour étaient impossibles à gérer via M365.
+
+**Solution** : En tant qu'expert système, nous avons créé un serveur SMTP utilisant Postfix permettant d'envoyer des millions de mails par jour.
+
+**Impact** :
+- Tous les comptes de services de Mvola utilisent ce serveur pour envoyer des mails à leurs partenaires et clients
+- Gestion scalable des envois massifs
+- Intégration transparente avec les systèmes existants
+
+**Échelle** : Des millions d'utilisateurs reçoivent quotidiennement ces mails
+
+---
+
+### 👁️ Mise en place de Zabbix pour le Monitoring
+**Contexte** : Les clients appelaient pour signaler les problèmes, les analystes travaillaient à l'aveugle sans informations précises, et le traitement prenait beaucoup de temps.
+
+**Solution** : Déploiement de Zabbix pour surveiller toutes les infrastructures du groupe hébergées chez Stellar-ix, incluant PfSense, Meraki, serveurs et même Microsoft 365.
+
+**Impact** :
+- Proactivité des agents analystes desk
+- Incidents traités avant que les utilisateurs ne soient au courant
+- Rapports de disponibilité précis indiquant les temps de coupure
+- Diagnostic précis de l'origine des problèmes (réseau/serveur/firewall)
+
+**Échelle** : Plus de 15 000 utilisateurs, 500+ équipements réseau
+
+---
+
+### 📁 Restructuration des Sites SharePoint de CGHV
+**Contexte** : Droits, dossiers et fichiers éparpillés, difficulté de trouver des fichiers car absence de hub site.
+
+**Solution** : Migration de toutes les données, numérotation et hiérarchisation automatique, contrôle d'accès granulaires.
+
+**Impact** :
+- Utilisateurs avec droits restreints uniquement à leurs fichiers
+- Navigation facilitée via hub site pour trouver rapidement les fichiers
+- Structure organisée et cohérente
+
+**Échelle** : Des centaines de personnes, plusieurs téraoctets de données
+
+---
+
+## Compétences Développées
+
+- **Architecture Cloud** : Migration à grande échelle vers M365
+- **DevOps** : Automatisation avec PowerShell, monitoring avec Zabbix
+- **Sécurité** : Configuration DKIM/DMARC/SPF, gestion des accès
+- **Gestion de Projet** : Coordination multi-équipes, gestion du changement
+- **Réseau** : Supervision d'infrastructures complexes
+
+## Outils Utilisés
+
+- Microsoft 365 Admin Center
+- Azure Portal
+- Zabbix Dashboard
+- Postfix Administration
+- PowerShell ISE
+- SharePoint Online
+
+## Réalisations Clés
+
+- Migration de 15 000 utilisateurs sans interruption de service
+- Réduction de 60% du temps moyen de résolution des incidents
+- Amélioration de 95% de la délivrabilité email
+- Centralisation de la supervision de 500+ équipements

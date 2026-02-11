@@ -51,15 +51,18 @@ function SocialLinks() {
 export default function Footer() {
   return (
     <footer
-      className={cn(
-        "relative mt-6 py-6 text-center text-sm text-gray-600 dark:text-gray-400",
-        "px-4 border-t border-gray-200 dark:border-gray-900",
-        "bg-zinc-50/80 dark:bg-black/80 backdrop-blur-sm",
+          className={cn(
+        "relative mt-6 py-6 text-center",
+        "px-4 border-t",
+        // Nouveau style avec effet glass
+        "bg-white/60 dark:bg-black/60 backdrop-blur-xl",
+        "border-gray-200/50 dark:border-gray-800/50",
+        // Effet de bordure supérieure
         "before:content-[''] before:absolute before:top-0 before:left-0 before:right-0",
-        "before:h-px before:bg-linear-to-r before:from-transparent",
-        "before:via-blue-500/30 before:to-transparent"
+        "before:h-px before:bg-gradient-to-r before:from-transparent",
+        "before:via-blue-500/50 dark:before:via-blue-400/50 before:to-transparent"
       )}
-      id="footerPortfolio"
+      id="footerPortfolio" 
     >
       {/* Social Links Grid */}
       <div className="flex justify-center flex-wrap gap-4 mb-4">
@@ -83,7 +86,7 @@ export default function Footer() {
           )}
         >
           <Link
-            href={`https://github.com/alemoraru/nextjs-portofolio-website/releases/tag/v${appVersion}`}
+            href={`https://github.com//nextjs-portofolio-website/releases/tag/v${appVersion}`}
             rel="noopener noreferrer"
             className={cn(
               "inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md",
@@ -100,13 +103,13 @@ export default function Footer() {
           </Link>
 
           <span className="text-gray-500 dark:text-gray-500">
-            built by{" "}
+          Built by  {" "}
             <Link
-              href="https://github.com/alemoraru"
+              href="https://github.com/herivony"
               rel="noopener noreferrer"
               className="font-semibold hover:text-blue-500 dark:hover:text-blue-400 transition-colors duration-200"
             >
-              @alemoraru
+              @Herivony Zola
             </Link>
           </span>
         </div>

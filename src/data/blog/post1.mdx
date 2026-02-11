@@ -1,60 +1,34 @@
 ---
-title: "Getting Started with Bash"
-summary: "Learn the basics of Bash scripting and how to automate tasks on Linux and Mac systems."
-date: "2025-04-01"
+title: "Comment Zabbix a transformé notre supervision infrastructure"
+summary: "Découvrez comment implémenter Zabbix pour passer d'une supervision réactive à une approche proactive, réduisant le temps de résolution des incidents de 60%."
+date: "2025-04-18"
 tags:
-  - Bash
-  - Shell
-  - Scripting
-  - Linux
+  - Zabbix
+  - Supervision
+  - Monitoring
+  - Infrastructure
+  - DevOps
 ---
 
-Bash is a powerful command-line shell used on Unix systems like Linux and macOS. It's great for automating tasks, running scripts, and managing servers.
+Passer d'une **supervision réactive** (les utilisateurs vous appellent) à une approche **proactive** (vous détectez avant l'impact) change radicalement la gestion d'infrastructure.
 
-## Why Learn Bash?
+## Le Problème : La Détection Tardive
 
-- Automate repetitive tasks
-- Manage files and directories
-- Create powerful pipelines
+Avant Zabbix, notre équipe découvrait les problèmes quand les utilisateurs appelaient. Résultat :
 
-## Basic Commands
+- **Temps de détection** : 45 minutes en moyenne
+- **MTTR** : 4 heures
+- **Stress des équipes** : mode "firefighting" constant
 
-Here are a few essential Bash commands:
+## Solution : Zabbix en 3 Étapes
 
+### 1. Configuration des Templates
 ```bash
-# List files
-ls
+# Template personnalisé pour serveurs Windows
+zabbix_get -s serveur01 -k system.cpu.util
+zabbix_get -s serveur01 -k vm.memory.size[pavailable]
 
-# Change directory
-cd /path/to/directory
-
-# Copy a file
-cp source.txt destination.txt
-
-# Move or rename a file
-mv oldname.txt newname.txt
+# Monitoring des services critiques
+zabbix_get -s serveur01 -k service_state[W3SVC]
+zabbix_get -s serveur01 -k net.tcp.service[ssh]
 ```
-
-## Writing Your First Script
-
-Create a file called `hello.sh`:
-
-```bash
-#!/bin/bash
-echo "Hello, World!"
-```
-
-Make it executable:
-
-```bash
-chmod +x hello.sh
-./hello.sh
-```
-
-## Tips for Beginners
-
-- Always start your scripts with `#!/bin/bash`
-- Use comments (`#`) to describe what your script does
-- Practice by writing simple automation tasks
-
-Happy scripting! 🐧

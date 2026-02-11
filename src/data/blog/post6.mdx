@@ -1,45 +1,19 @@
 ---
-title: "Why You Should Learn TypeScript"
-summary: "Understand the benefits of using TypeScript for writing safer, more maintainable JavaScript applications."
-date: "2025-04-22"
-tags:
-  - TypeScript
-  - JavaScript
-  - Programming
-  - Frontend
+title: "Introduction à la supervision système"
+summary: "Pourquoi superviser ses serveurs."
+date: "2025-04-05"
+tags: [Monitoring, Zabbix, Infrastructure]
 ---
 
-**TypeScript** is a superset of JavaScript that adds **static types**. It helps you catch errors early and write cleaner, more robust code.
+La supervision permet d’anticiper les pannes et d’améliorer la disponibilité.
 
-## Key Benefits
+## Métriques
+- CPU
+- RAM
+- Disque
+- Réseau
 
-- Catch errors at compile time
-- Better tooling and IntelliSense
-- Easier to refactor large codebases
+## Exemple
 
-## A Simple Example
-
-```typescript
-function add(a: number, b: number): number {
-  return a + b
-}
-
-const result = add(2, 3)
-console.log(result)
-```
-
-> **Note**: `console.log` is used to print strings to the console!
-
-If you accidentally pass a string:
-
-```typescript
-add(2, "3") // TypeScript will give an error!
-```
-
-## Common Use Cases
-
-- Large-scale applications
-- Frontend frameworks (React, Angular)
-- Backend development (Node.js)
-
-Switching to TypeScript can be a game-changer for your productivity and confidence! ⚡
+```bash
+ping -c 1 serveur01

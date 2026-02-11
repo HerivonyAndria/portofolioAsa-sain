@@ -1,43 +1,51 @@
 ---
-title: SmartHive
-image: /projects/pictureF.jpg
-description: An IoT solution for smart beekeeping.
-startDate: 2020-02
-endDate: 2020-08
+title: Restructuration des Sites SharePoint CGHV
+image: /projects/sharepoints.jpg
+description: Réorganisation complète de l'environnement SharePoint de CGHV => migration des données, hiérarchisation automatique et mise en place d'une gouvernance stricte des accès pour des centaines d'utilisateurs.
+startDate: 2024-01
+endDate: 2024-02
 techStack:
-  - Arduino
-  - Raspberry Pi
-  - Python
-  - React
-teamSize: 5
-role: IoT Engineer
-githubUrl: https://github.com/project-SmartHive
+  - SharePoint Online
+  - Microsoft 365
+  - PowerShell PnP
+  - Microsoft Graph API
+  - Power Automate
+  - Azure Logic Apps
+  - Teams
+  - OneDrive
+  - Information Protection
+  - Metadata Management
+teamSize: 2
+role: SharePoint Architect & Information Management Specialist
 ---
 
-# Introduction
+# Restructuration des Sites SharePoint CGHV
 
-Project SmartHive integrates IoT devices to create a connected home ecosystem. It allows users to control and monitor their homes remotely through a mobile app.
+## Contexte
 
-## Key Features
+L'environnement SharePoint de CGHV (Comptoir Général Hospitalier et Vétérinaire) était dans un état chaotique :
+- **200+ sites SharePoint** créés de manière anarchique
+- **5 To de données** éparpillées sans structure logique
+- **Droits d'accès incohérents** : certains utilisateurs avaient des accès admin sur des sites sensibles
+- **Pas de gouvernance** : pas de politique de rétention, pas de classification
+- **Performance dégradée** : temps de chargement > 10 secondes pour les dossiers avec 10 000+ fichiers
+- **Recherche inefficace** : impossible de trouver rapidement les documents
 
-- **Device Control**: Control lights, appliances, and thermostats remotely.
-- **Energy Monitoring**: Track energy consumption and optimize usage.
-- **Security**: Real-time alerts for unauthorized access and live camera feeds.
-- **Voice Commands**: Integration with voice assistants like Alexa and Google Assistant.
+**Situation initiale (Janvier 2024) :**
+- **Sites actifs** : 45/200 (les autres orphelins ou abandonnés)
+- **Données dupliquées** : 30% des fichiers existaient en multiples exemplaires
+- **Conformité** : 0% des documents classifiés
+- **Sécurité** : 60% des sites avec des permissions incorrectes
 
-## Technical Insights
+## Objectifs du Projet
 
-- **IoT Devices**: Used Arduino and Raspberry Pi for device control and data collection.
-- **Communication Protocol**: Implemented MQTT for efficient communication between devices.
-- **Backend**: Developed a Python-based server for processing and storing data.
-- **Frontend**: Built a React app for user interaction and control.
+1. **Rationalisation** : Réduire de 200 à 50 sites maximum
+2. **Structuration** : Implémenter une hiérarchie logique par métier
+3. **Sécurisation** : Mettre en place une gouvernance stricte des accès
+4. **Performance** : Améliorer les temps de chargement et de recherche
+5. **Conformité** : Classifier 100% des documents sensibles
+6. **Expérience utilisateur** : Créer un hub site intuitif pour la navigation
 
-## Challenges and Solutions
+## Architecture Technique
 
-- **Interoperability**: Designed a modular system to support a wide range of devices.
-- **Latency**: Optimized communication protocols to reduce response times.
-- **Security**: Implemented encryption and secure authentication to protect user data.
-
-## Outcome
-
-Project SmartHive was deployed in a model home and demonstrated its potential to simplify daily life. It received interest from smart home enthusiasts and IoT startups.
+### Nouvelle Structure SharePoint

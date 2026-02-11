@@ -1,11 +1,18 @@
+// src/components/content/HomeContent.tsx
 "use client"
 
 import { motion, MotionConfig, type Variants } from "framer-motion"
+import Link from "next/link"
+import { FiDownload, FiMail } from "react-icons/fi"
 import BlogPost from "@/components/BlogPost"
 import ProjectTile from "@/components/ProjectTile"
 import ViewAllHeader from "@/components/ViewAllHeader"
 import WorkItem from "@/components/WorkItem"
-import { homeIntroConfig, factIconMap } from "@/data/content"
+import ProfileCard from "@/components/ProfileCard"
+import { 
+  homeIntroConfig, 
+  factIconMap
+} from "@/data/content"
 import { BlogPostProps, ProjectProps, WorkItemProps } from "@/lib/types"
 import { cn } from "@/lib/utils"
 
@@ -72,30 +79,26 @@ function QuickFacts() {
         return (
           <motion.div
             key={i}
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, x: -10 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{
               duration: 0.5,
               delay: i * 0.1,
               ease: "easeOut",
             }}
-            whileHover={{
-              scale: 1.05,
-              transition: { duration: 0.2, ease: "easeOut" },
-            }}
             className={cn(
-              "flex items-center gap-2 px-4 py-2 rounded-full",
-              "border border-gray-300 dark:border-gray-700",
-              "bg-gray-50 dark:bg-gray-800",
-              "text-sm font-medium text-gray-700 dark:text-gray-300",
+              "flex items-center gap-2 px-4 py-3 rounded-xl",
+              "border border-gray-200 dark:border-gray-800",
+              "bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm",
+              "text-gray-700 dark:text-gray-300",
               "shadow-sm hover:shadow-md",
               "hover:border-blue-400 dark:hover:border-blue-600",
               "transition-all duration-200 cursor-default"
             )}
           >
-            <Icon className="text-blue-600 dark:text-blue-400 text-base shrink-0" />
-            <span>{fact.label}</span>
+            <Icon className="text-blue-600 dark:text-blue-400 text-lg shrink-0" />
+            <span className="font-medium text-sm">{fact.label}</span>
           </motion.div>
         )
       })}
@@ -120,79 +123,163 @@ export default function HomeContent({ blog, work, projects }: HomeContentProps) 
 
   return (
     <MotionConfig reducedMotion="user">
-      <section className="px-4 max-w-4xl mx-auto">
-        {/* Intro Section */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          variants={fadeUpVariants}
-          viewport={{ once: true }}
-          className="text-center mt-2"
-        >
-          {/* Introductory Text */}
-          <h1 className="text-3xl sm:text-4xl font-bold mb-4 text-gray-900 dark:text-gray-100">
-            Hi, I&#39;m {homeIntroConfig.shortName || homeIntroConfig.name}{" "}
-            <motion.span
-              initial={{ rotate: 0 }}
-              animate={{ rotate: [0, 14, -8, 14, -4, 10, 0] }}
-              transition={{ duration: 1.5, delay: 0.5, ease: "easeInOut" }}
-              className="inline-block"
+      <div className="w-full">
+        {/* Hero Section with two columns layout */}
+        <div className="grid lg:grid-cols-12 gap-8 mb-16">
+          {/* Left column: Main content (8 columns on large screens) */}
+          <div className="lg:col-span-8 space-y-8">
+            {/* Header with greeting */}
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              variants={fadeUpVariants}
+              viewport={{ once: true }}
             >
-              👋
-            </motion.span>
-          </h1>
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 text-gray-900 dark:text-white">
+                Je suis{" "}
+                <span className="text-blue-600 dark:text-blue-400">
+                  {homeIntroConfig.shortName || homeIntroConfig.name}
+                </span>{" "}
+                <motion.span
+                  initial={{ rotate: 0 }}
+                  animate={{ rotate: [0, 14, -8, 14, -4, 10, 0] }}
+                  transition={{ duration: 1.5, delay: 0.5, ease: "easeInOut" }}
+                  className="inline-block"
+                >
+                  👋
+                </motion.span>
+              </h1>
 
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            variants={staggerContainerVariants}
-            viewport={{ once: true }}
-            className="space-y-4 max-w-3xl mx-auto mb-8"
-          >
-            {homeIntroConfig.introParagraphs.map((paragraph, index) => (
-              <motion.p
-                key={index}
-                variants={staggerItemVariants}
-                className="text-base sm:text-lg leading-relaxed text-gray-600 dark:text-gray-300 text-left"
+              {/* Introduction paragraphs */}
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                variants={staggerContainerVariants}
+                viewport={{ once: true }}
+                className="space-y-4"
               >
-                {paragraph}
-              </motion.p>
-            ))}
-          </motion.div>
+                {homeIntroConfig.introParagraphs.map((paragraph, index) => (
+                  <motion.p
+                    key={index}
+                    variants={staggerItemVariants}
+                    className="text-lg leading-relaxed text-gray-700 dark:text-gray-300"
+                  >
+                    {paragraph}
+                  </motion.p>
+                ))}
+              </motion.div>
+            </motion.div>
 
-          {/* Quick Facts Section */}
-          <div className="mt-12 text-center">
-            <motion.h2
-              initial={{ opacity: 0, y: 10 }}
+            {/* Action Buttons Section */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-              className="text-2xl sm:text-3xl font-bold mb-6 text-gray-900 dark:text-white"
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="space-y-4"
             >
-              Quick & Fun Facts
-            </motion.h2>
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+                Mon CV
+              </h2>
+              <div className="flex flex-wrap gap-4">
+                {/* Download CV Button */}
+                {homeIntroConfig.actionButtons?.downloadCV && (
+                  <a
+                    href={homeIntroConfig.actionButtons.downloadCV.url || "/cv.pdf"}
+                    download
+                    className={cn(
+                      "group inline-flex items-center gap-3 px-6 py-3 rounded-xl",
+                      "text-white font-medium transition-all duration-200",
+                      "bg-gradient-to-r from-blue-600 to-blue-700",
+                      "hover:from-blue-700 hover:to-blue-800",
+                      "shadow-lg hover:shadow-xl hover:scale-[1.02]",
+                      "active:scale-[0.98]"
+                    )}
+                  >
+                    <FiDownload className="w-5 h-5" />
+                    <span>{homeIntroConfig.actionButtons.downloadCV.text || "Télécharger mon CV"}</span>
+                  </a>
+                )}
 
-            <div className="flex flex-wrap justify-center gap-3 px-4 max-w-4xl mx-auto">
-              <QuickFacts />
+                {/* Contact Button */}
+                {homeIntroConfig.actionButtons?.contact && (
+                  <Link
+                    href={homeIntroConfig.actionButtons.contact.url || "/contact"}
+                    className={cn(
+                      "group inline-flex items-center gap-3 px-6 py-3 rounded-xl",
+                      "font-medium transition-all duration-200",
+                      "bg-white dark:bg-gray-800",
+                      "border-2 border-gray-300 dark:border-gray-700",
+                      "text-gray-800 dark:text-gray-200",
+                      "hover:border-blue-500 dark:hover:border-blue-500",
+                      "hover:bg-blue-50 dark:hover:bg-blue-900/20",
+                      "shadow-lg hover:shadow-xl hover:scale-[1.02]",
+                      "active:scale-[0.98]"
+                    )}
+                  >
+                    <FiMail className="w-5 h-5" />
+                    <span>{homeIntroConfig.actionButtons.contact.text || "Me contacter"}</span>
+                  </Link>
+                )}
+              </div>
+            </motion.div>
+
+            {/* Quick Facts Section */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="space-y-4"
+            >
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+                Faits Rapides & Intéressants
+              </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <QuickFacts />
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Right column: Profile Card (4 columns on large screens) */}
+          <div className="lg:col-span-4">
+            <div className="lg:sticky lg:top-8">
+              {/* Profile Card */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="w-full"
+              >
+                <ProfileCard />
+              </motion.div>
             </div>
           </div>
-        </motion.div>
+        </div>
 
-        {/* Recent Work */}
+        {/* Divider */}
+        <hr className="border-gray-300 dark:border-gray-700 my-12" />
+
+        {/* Recent Work Section */}
         <motion.div
           initial="hidden"
           whileInView="visible"
           variants={fadeUpVariants}
           viewport={{ once: true, margin: "-100px" }}
-          className="mt-20"
+          className="mb-16"
         >
-          <ViewAllHeader title="Work Experience" pageUrl="/work" itemCount={work.length} />
+          <ViewAllHeader 
+            title="Expérience Professionnelle" 
+            pageUrl="/work" 
+            itemCount={work.length} 
+          />
           <motion.div
             initial="hidden"
             whileInView="visible"
             variants={staggerContainerVariants}
             viewport={{ once: true, margin: "-50px" }}
-            className="grid gap-4"
+            className="grid gap-4 mt-6"
           >
             {work
               .slice()
@@ -224,21 +311,25 @@ export default function HomeContent({ blog, work, projects }: HomeContentProps) 
           </motion.div>
         </motion.div>
 
-        {/* Recent Projects */}
+        {/* Recent Projects Section */}
         <motion.div
           initial="hidden"
           whileInView="visible"
           variants={fadeUpVariants}
           viewport={{ once: true, margin: "-100px" }}
-          className="mt-20"
+          className="mb-16"
         >
-          <ViewAllHeader title="Recent Projects" pageUrl="/projects" itemCount={projects.length} />
+          <ViewAllHeader 
+            title="Projets Récents" 
+            pageUrl="/projects" 
+            itemCount={projects.length} 
+          />
           <motion.div
             initial="hidden"
             whileInView="visible"
             variants={staggerContainerVariants}
             viewport={{ once: true, margin: "-50px" }}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6"
+            className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6"
           >
             {projects
               .slice()
@@ -270,21 +361,25 @@ export default function HomeContent({ blog, work, projects }: HomeContentProps) 
           </motion.div>
         </motion.div>
 
-        {/* Recent Blog Posts */}
+        {/* Recent Blog Posts Section */}
         <motion.div
           initial="hidden"
           whileInView="visible"
           variants={fadeUpVariants}
           viewport={{ once: true, margin: "-100px" }}
-          className="mt-20 mb-16"
+          className="mb-16"
         >
-          <ViewAllHeader title="Recent Blog Posts" pageUrl="/blog" itemCount={blog.length} />
+          <ViewAllHeader 
+            title="Articles de Blog Récents" 
+            pageUrl="/blog" 
+            itemCount={blog.length} 
+          />
           <motion.div
             initial="hidden"
             whileInView="visible"
             variants={staggerContainerVariants}
             viewport={{ once: true, margin: "-50px" }}
-            className="grid gap-4 sm:grid-cols-2 md:grid-cols-3"
+            className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 mt-6"
           >
             {blog
               .slice()
@@ -297,7 +392,7 @@ export default function HomeContent({ blog, work, projects }: HomeContentProps) 
               ))}
           </motion.div>
         </motion.div>
-      </section>
+      </div>
     </MotionConfig>
   )
 }

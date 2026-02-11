@@ -61,3 +61,56 @@ body {
 .dark .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: hsl(215 20% 25%);
 }
+/* Ajoutez à la fin de globals.css */
+
+/* Styles pour la page CV */
+.cv-section {
+  page-break-inside: avoid;
+}
+
+/* Impression */
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  
+  .no-print {
+    display: none;
+  }
+  
+  a {
+    color: black !important;
+    text-decoration: underline;
+  }
+}
+/* Pour un logo carré/arrondi */
+.logo {
+  border-radius: 4px;
+  object-fit: contain;
+}
+
+/* Effet hover sur le logo */
+.logo-hover:hover {
+  opacity: 0.9;
+  transform: scale(1.05);
+  transition: all 0.2s ease;
+}
+
+/* Pour un logo avec badge ou marque */
+.logo-badge {
+  position: relative;
+}
+
+.logo-badge::after {
+  content: "IT";
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: #3b82f6;
+  color: white;
+  font-size: 10px;
+  padding: 2px 4px;
+  border-radius: 4px;
+  font-weight: bold;
+}

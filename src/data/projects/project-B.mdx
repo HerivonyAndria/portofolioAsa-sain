@@ -1,45 +1,43 @@
 ---
-title: VoteChain
-image: /projects/pictureB.jpg
-description: A decentralized voting system using blockchain technology.
-startDate: 2022-03
-endDate: 2022-09
+title: Serveur SMTP Haute Performance pour Mvola
+image: /projects/smtp.png
+description: Déploiement d'un serveur SMTP dédié pour l'envoi en masse de courriers électroniques, supportant des millions d'emails par jour pour les comptes de service Mvola.
+startDate: 2024-01
+endDate: 2024-01
 techStack:
-  - Solidity
-  - Ethereum
-  - React
-  - Web3.js
-  - IPFS
-teamSize: 5
-role: Blockchain Developer
-githubUrl: https://github.com/project-VoteChain
-paperUrl: https://arxiv.org
+  - Postfix
+  - Linux (CentOS 8)
+  - DKIM
+  - DMARC
+  - SPF
+  - Bash
+  - Zabbix
+  - Dovecot
+  - SpamAssassin
+teamSize: 1
+role: Expert Système et Application
 ---
 
-# Introduction
+# Serveur SMTP Haute Performance pour Mvola
 
-Project VoteChain leverages blockchain technology to create a secure and transparent voting system. It eliminates the risk of tampering and ensures that every vote is counted accurately.
+## Contexte
 
-## Key Features
+Après la migration des 30+ entités du groupe Axian vers Microsoft 365, un problème critique est apparu : les comptes de service de **Mvola** (service de paiement mobile) qui envoient quotidiennement des centaines de milliers de notifications transactionnelles dépassaient largement les limites d'envoi imposées par Microsoft 365.
 
-- **Decentralized Voting**: Votes are recorded on the Ethereum blockchain, ensuring immutability.
-- **Voter Authentication**: Secure voter registration using cryptographic keys.
-- **Anonymous Voting**: Ensures voter privacy while maintaining transparency.
-- **Real-Time Results**: Results are updated in real-time as votes are cast.
+**Problèmes identifiés :**
+- Limite Microsoft 365 : 10 000 emails/jour par utilisateur
+- Besoin Mvola : 500 000+ emails transactionnels/jour
+- Délivrabilité dégradée due aux limitations techniques
+- Impossible d'envoyer des campagnes marketing massives
 
-## Technical Insights
+## Objectifs du Projet
 
-- **Smart Contracts**: Developed using Solidity to handle voting logic and ensure tamper-proof results.
-- **Frontend**: Built with React and Web3.js for seamless interaction with the blockchain.
-- **Storage**: Used IPFS for storing voter data securely and efficiently.
-- **Security**: Implemented multi-signature wallets for election administrators to prevent unauthorized access.
+1. **Performance** : Support d'au moins 1 million d'emails/jour
+2. **Délivrabilité** : Taux de délivrabilité > 95%
+3. **Sécurité** : Conformité aux standards anti-spam (DKIM, DMARC, SPF)
+4. **Monitoring** : Tracking complet des envois en temps réel
+5. **Intégration** : Interface transparente avec les systèmes existants de Mvola
 
-## Challenges and Solutions
+## Architecture Technique
 
-- **Scalability**: Optimized smart contracts to reduce gas fees and improve transaction throughput.
-- **Security**: Conducted rigorous testing to prevent vulnerabilities like reentrancy attacks.
-- **User Experience**: Designed an intuitive UI to make blockchain technology accessible to non-technical users.
-
-## Outcome
-
-Project VoteChain was successfully piloted in a university election, receiving praise for its transparency and ease of use. It demonstrated the potential of blockchain in revolutionizing traditional voting systems.
+### Stack Technologique
