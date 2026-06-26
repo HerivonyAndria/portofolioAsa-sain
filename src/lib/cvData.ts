@@ -12,9 +12,11 @@ export const cvData = {
   },
   experiences: [
     {
+      id: "exp-1",
       company: "Webo-facto",
       role: "Administrateur Système / Ingénieur Système",
       period: "02/2026 - Actuellement",
+      logo: "/work/webofacto.png", // Assurez-vous que ce fichier existe dans /public/work/
       tags: ["LINUX", "SAAS", "BACKUP", "DNS", "SSL"],
       tasks: [
         "Administration d'une plateforme SaaS hébergeant plus de 3 500 sites web.",
@@ -28,9 +30,11 @@ export const cvData = {
       ]
     },
     {
+      id: "exp-2",
       company: "Pulse - Axian Group",
       role: "Expert Système et Application - L3",
       period: "11/2023 - Actuellement",
+      logo: "/work/pulse.png",
       tags: ["SUPERVISION", "VIRTUALISATION", "SYSTÈMES", "RÉSEAUX", "SÉCURITÉ", "STOCKAGE", "CLOUD", "HAUTE DISPONIBILITÉ"],
       tasks: [
         "Administration des environnements Microsoft 365 et Azure (accès conditionnels, sécurisation tenant).",
@@ -44,9 +48,11 @@ export const cvData = {
       ]
     },
     {
+      id: "exp-3",
       company: "Orange Business",
       role: "Ingénieur Support - Virtualisation, Réseaux & Sécurité",
       period: "06/2022 - 10/2023",
+      logo: "/work/orange.png",
       tags: ["REMOTE", "VIRTUALISATION", "SYSTÈMES", "SÉCURITÉ", "SERVICE DESK"],
       tasks: [
         "Change Maker Awards - 1er semestre 2023 chez Orange Business pour des projets d'automatisations.",
@@ -58,9 +64,11 @@ export const cvData = {
       ]
     },
     {
+      id: "exp-4",
       company: "Transacom Services Madagascar",
       role: "Gérant principal et Technicien support niveau 3 en IT",
       period: "12/2020 - 04/2022",
+      logo: "/work/transacom.png",
       tags: ["ON SITE", "SUPPORT N3", "GESTION"],
       tasks: [
         "Référent technique, technicien niveau 3 et gestionnaire administratif.",
@@ -71,9 +79,11 @@ export const cvData = {
       ]
     },
     {
+      id: "exp-5",
       company: "MIAV Service Madagascar",
       role: "Support technique Niveau II",
       period: "09/2019 - 12/2020",
+      logo: "/work/miav.png",
       tags: ["ON SITE", "SUPPORT N2"],
       tasks: [
         "Assistance technique à distance (diagnostic et résolution des dysfonctionnements matériels ou logiciels).",
@@ -93,35 +103,15 @@ export const cvData = {
     telephonieVoIP: ["3CX", "PABX", "SIP", "Configuration trunks SIP", "Extensions", "Routage", "IVR"]
   },
   projects: [
-    {
-      title: "Migration M365 & Rebranding - Groupe Axian",
-      description: "Migration de toutes les entités du groupe Axian vers Microsoft 365, incluant le rebranding Axian-Telecom Yas et Mixx.",
-      technologies: ["M365", "Exchange Online", "Azure AD", "PowerShell", "SharePoint"]
-    },
-    {
-      title: "Déploiement SSO SAML 2.0 - Groupe Axian",
-      description: "Implémentation d'une authentification unique (SSO) via SAML 2.0 pour toutes les applications du groupe.",
-      technologies: ["Azure AD", "SAML 2.0", "OpenID Connect", "OAuth 2.0", "Sécurité"]
-    },
-    {
-      title: "Supervision Zabbix - Groupe Axian",
-      description: "Déploiement de Zabbix pour la supervision complète des infrastructures réseau et systèmes du groupe.",
-      technologies: ["Zabbix", "Linux", "Windows Server", "pfSense", "Meraki"]
-    },
-    {
-      title: "Serveur SMTP haute performance - Mvola",
-      description: "Déploiement d'un serveur SMTP dédié supportant des millions d'e-mails par jour.",
-      technologies: ["Postfix", "Linux CentOS 8", "DKIM", "DMARC", "SPF"]
-    },
-    {
-      title: "Automatisation Reporting - Orange Business",
-      description: "Développement d'une plateforme d'automatisation des contrôles quotidiens : 4h de vérifications manuelles remplacées par des rapports en 5 minutes.",
-      technologies: ["Puppeteer", "Node.js", "PowerShell", "Python", "REST API"]
-    }
+    { id: "proj-1", title: "Migration M365 & Rebranding - Groupe Axian", description: "Migration de toutes les entités du groupe Axian vers Microsoft 365, incluant le rebranding Axian-Telecom Yas et Mixx.", technologies: ["M365", "Exchange Online", "Azure AD", "PowerShell", "SharePoint"] },
+    { id: "proj-2", title: "Déploiement SSO SAML 2.0 - Groupe Axian", description: "Implémentation d'une authentification unique (SSO) via SAML 2.0 pour toutes les applications du groupe.", technologies: ["Azure AD", "SAML 2.0", "OpenID Connect", "OAuth 2.0", "Sécurité"] },
+    { id: "proj-3", title: "Supervision Zabbix - Groupe Axian", description: "Déploiement de Zabbix pour la supervision complète des infrastructures réseau et systèmes du groupe.", technologies: ["Zabbix", "Linux", "Windows Server", "pfSense", "Meraki"] },
+    { id: "proj-4", title: "Serveur SMTP haute performance - Mvola", description: "Déploiement d'un serveur SMTP dédié supportant des millions d'e-mails par jour.", technologies: ["Postfix", "Linux CentOS 8", "DKIM", "DMARC", "SPF"] },
+    { id: "proj-5", title: "Automatisation Reporting - Orange Business", description: "Développement d'une plateforme d'automatisation des contrôles quotidiens : 4h de vérifications manuelles remplacées par des rapports en 5 minutes.", technologies: ["Puppeteer", "Node.js", "PowerShell", "Python", "REST API"] }
   ],
   certifications: [
-    { title: "Certificat MS-900 - Microsoft 365 Fundamentals", issuer: "Microsoft", date: "Janvier 2024" },
-    { title: "Responsive Web Design + Front End Libraries + JS Algorithms", issuer: "freeCodeCamp", date: "2022-2023" },
-    { title: "Master - Ingénierie Sécurité Systèmes, Réseau & Télécommunication", issuer: "École Supérieure de Management, Maroc", date: "2015-2016" }
+    { id: "cert-1", title: "Certificat MS-900 - Microsoft 365 Fundamentals", issuer: "Microsoft", date: "Janvier 2024" },
+    { id: "cert-2", title: "Responsive Web Design + Front End Libraries + JS Algorithms", issuer: "freeCodeCamp", date: "2022-2023" },
+    { id: "cert-3", title: "Master - Ingénierie Sécurité Systèmes, Réseau & Télécommunication", issuer: "École Supérieure de Management, Maroc", date: "2015-2016" }
   ]
 };

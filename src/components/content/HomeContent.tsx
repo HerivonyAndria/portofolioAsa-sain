@@ -107,19 +107,49 @@ function QuickFacts() {
 }
 
 /**
+ * Get time in milliseconds safely from a date string.
+ * @param dateStr - Date string
+ * @returns Time in milliseconds or 0 if invalid
+ */
+function getTimeSafe(dateStr: string | undefined): number {
+  const date = new Date(dateStr ?? "")
+  return isNaN(date.getTime()) ? 0 : date.getTime()
+}
+
+/**
+ * Sort work items: "Present" jobs first, then by start date descending.
+ */
+function sortWork(work: WorkItemProps[]): WorkItemProps[] {
+  return work.slice().sort((a, b) => {
+    const aIsPresent = a.end === "Present"
+    const bIsPresent = b.end === "Present"
+
+    // 1. Jobs still in progress go to the top
+    if (aIsPresent && !bIsPresent) return -1
+    if (!aIsPresent && bIsPresent) return 1
+
+    // 2. Among "Present" jobs, sort by start date descending (most recent first)
+    if (aIsPresent && bIsPresent) {
+      return getTimeSafe(b.start) - getTimeSafe(a.start)
+    }
+
+    // 3. Past jobs: sort by end date descending, then start date descending
+    const endDiff = getTimeSafe(b.end) - getTimeSafe(a.end)
+    if (endDiff !== 0) return endDiff
+    return getTimeSafe(b.start) - getTimeSafe(a.start)
+  })
+}
+
+/**
  * HomeContent component that renders the main content of the landing page.
  * This is a client component to support framer-motion animations.
  */
 export default function HomeContent({ blog, work, projects }: HomeContentProps) {
-  /**
-   * Get time in milliseconds safely from a date string.
-   * @param dateStr - Date string
-   * @returns Time in milliseconds or 0 if invalid
-   */
-  const getTimeSafe = (dateStr: string | undefined) => {
-    const date = new Date(dateStr ?? "")
-    return isNaN(date.getTime()) ? 0 : date.getTime()
-  }
+  // How many work items to show on the home page.
+  // Falls back to work.length so ALL experiences are shown if the config key
+  // doesn't exist yet (avoids the previous hard-coded slice(0, 5) bug).
+  const workToShow: number =
+    (homeIntroConfig as any).workToShow ?? work.length
 
   return (
     <MotionConfig reducedMotion="user">
@@ -233,7 +263,7 @@ export default function HomeContent({ blog, work, projects }: HomeContentProps) 
               className="space-y-4"
             >
               <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
-                Faits Rapides & Intéressants
+                Faits Rapides &amp; Intéressants
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <QuickFacts />
@@ -244,7 +274,6 @@ export default function HomeContent({ blog, work, projects }: HomeContentProps) 
           {/* Right column: Profile Card (4 columns on large screens) */}
           <div className="lg:col-span-4">
             <div className="lg:sticky lg:top-8">
-              {/* Profile Card */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -261,7 +290,7 @@ export default function HomeContent({ blog, work, projects }: HomeContentProps) 
         {/* Divider */}
         <hr className="border-gray-300 dark:border-gray-700 my-12" />
 
-        {/* Recent Work Section */}
+        {/* ── Expérience Professionnelle ────────────────────────────────────── */}
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -269,10 +298,10 @@ export default function HomeContent({ blog, work, projects }: HomeContentProps) 
           viewport={{ once: true, margin: "-100px" }}
           className="mb-16"
         >
-          <ViewAllHeader 
-            title="Expérience Professionnelle" 
-            pageUrl="/work" 
-            itemCount={work.length} 
+          <ViewAllHeader
+            title="Expérience Professionnelle"
+            pageUrl="/work"
+            itemCount={work.length}
           />
           <motion.div
             initial="hidden"
@@ -281,37 +310,17 @@ export default function HomeContent({ blog, work, projects }: HomeContentProps) 
             viewport={{ once: true, margin: "-50px" }}
             className="grid gap-4 mt-6"
           >
-            {work
-              .slice()
-              .sort((a, b) => {
-                // Items with "Present" should be at the top
-                const aIsPresent = a.end === "Present"
-                const bIsPresent = b.end === "Present"
-
-                if (aIsPresent && !bIsPresent) return -1
-                if (!aIsPresent && bIsPresent) return 1
-
-                // If both are Present or both have dates, sort by end date (newest first)
-                if (aIsPresent && bIsPresent) {
-                  return a.company.localeCompare(b.company)
-                }
-
-                const endDiff = getTimeSafe(b.end) - getTimeSafe(a.end)
-                if (endDiff !== 0) return endDiff
-
-                // If end dates are the same, sort by company name
-                return a.company.localeCompare(b.company)
-              })
-              .slice(0, homeIntroConfig.workItemsToShow)
+            {sortWork(work)
+              .slice(0, workToShow)
               .map((job, i) => (
-                <motion.div key={i} variants={staggerItemVariants}>
+                <motion.div key={`${job.company}-${job.start}-${i}`} variants={staggerItemVariants}>
                   <WorkItem {...job} />
                 </motion.div>
               ))}
           </motion.div>
         </motion.div>
 
-        {/* Recent Projects Section */}
+        {/* ── Projets Récents ───────────────────────────────────────────────── */}
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -319,10 +328,10 @@ export default function HomeContent({ blog, work, projects }: HomeContentProps) 
           viewport={{ once: true, margin: "-100px" }}
           className="mb-16"
         >
-          <ViewAllHeader 
-            title="Projets Récents" 
-            pageUrl="/projects" 
-            itemCount={projects.length} 
+          <ViewAllHeader
+            title="Projets Récents"
+            pageUrl="/projects"
+            itemCount={projects.length}
           />
           <motion.div
             initial="hidden"
@@ -334,14 +343,12 @@ export default function HomeContent({ blog, work, projects }: HomeContentProps) 
             {projects
               .slice()
               .sort((a, b) => {
-                // Items with "Present" should be at the top
                 const aIsPresent = a.endDate === "Present"
                 const bIsPresent = b.endDate === "Present"
 
                 if (aIsPresent && !bIsPresent) return -1
                 if (!aIsPresent && bIsPresent) return 1
 
-                // If both are Present or both have dates, sort by end date (newest first)
                 if (aIsPresent && bIsPresent) {
                   return a.title.localeCompare(b.title)
                 }
@@ -349,7 +356,6 @@ export default function HomeContent({ blog, work, projects }: HomeContentProps) 
                 const endDiff = getTimeSafe(b.endDate) - getTimeSafe(a.endDate)
                 if (endDiff !== 0) return endDiff
 
-                // If end dates are the same, sort by title
                 return a.title.localeCompare(b.title)
               })
               .slice(0, homeIntroConfig.projectsToShow)
@@ -361,7 +367,7 @@ export default function HomeContent({ blog, work, projects }: HomeContentProps) 
           </motion.div>
         </motion.div>
 
-        {/* Recent Blog Posts Section */}
+        {/* ── Articles de Blog Récents ──────────────────────────────────────── */}
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -369,10 +375,10 @@ export default function HomeContent({ blog, work, projects }: HomeContentProps) 
           viewport={{ once: true, margin: "-100px" }}
           className="mb-16"
         >
-          <ViewAllHeader 
-            title="Articles de Blog Récents" 
-            pageUrl="/blog" 
-            itemCount={blog.length} 
+          <ViewAllHeader
+            title="Articles de Blog Récents"
+            pageUrl="/blog"
+            itemCount={blog.length}
           />
           <motion.div
             initial="hidden"
