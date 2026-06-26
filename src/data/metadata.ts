@@ -8,7 +8,7 @@ export const siteMetadata = {
   /**
    * Site title (shown in browser tabs and search results)
    */
-  title: "Next.js Developer Portfolio Template",
+  title: "Zola - Portofolio",
 
   /**
    * Site description (shown in search results and social media)
